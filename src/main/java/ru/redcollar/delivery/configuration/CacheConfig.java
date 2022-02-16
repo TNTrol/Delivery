@@ -7,7 +7,6 @@ import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,12 +27,5 @@ public class CacheConfig {
             }
         };
     }
-
-//    public CommonErrot
-
-//    @Bean
-//    public KafkaTemplate kafkaTemplate() {
-//        return new KafkaTemplate()
-//    }
 
 }

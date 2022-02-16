@@ -3,13 +3,13 @@ package ru.redcollar.delivery.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
+import ru.redcollar.delivery.entity.StatusDelivery;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeliveryProductDto implements Serializable {
+public class DeliveryStatusDto {
 
-    private Long productId;
+    private StatusDelivery statusDelivery;
+    private Long deliveryId;
 }

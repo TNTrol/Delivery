@@ -4,22 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeliveryDto {
+public class DeliveryDto implements Serializable {
 
-    @NotNull
     private String fromAddress;
 
-    @NotNull
     private String toAddress;
 
-    @NotNull
-    private String email;
+    private Long userId;
 
     private List<DeliveryProductDto> products;
 }

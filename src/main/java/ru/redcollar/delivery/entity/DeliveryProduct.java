@@ -23,4 +23,8 @@ public class DeliveryProduct {
     @ManyToOne
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+
+    public String toString(){
+        return "DeliveryProduct( id=" + id + ", productId=" + productId + ")";
+    }
 }
