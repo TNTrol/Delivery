@@ -24,20 +24,20 @@ public class DeliveryService {
     private final DeliveryRepository deliveryRepository;
 
     public void updateStatusOfDelivery(DeliveryStatusDto status) {
-        Optional<Delivery> deliveryOptional = deliveryRepository.findById(status.getDeliveryId());
-        if (deliveryOptional.isEmpty()) {
+        Delivery delivery = deliveryRepository.findById(status.getDeliveryId()).orElseThrow(() -> {
+            log.error("Don't exist delivery with id=" + status.getDeliveryId());
             throw new NullPointerException();
-        }
-        Delivery delivery = deliveryOptional.get();
+        });
         delivery.setStatusDelivery(status.getStatusDelivery());
         deliveryRepository.save(delivery);
+        log.info("Update status delivery id=" + status.getDeliveryId());
     }
 
-    @RabbitListener(queues = "${message.topic.name}")
-    public void receive(@Payload DeliveryDto dto) {
+    public void receive(DeliveryDto dto) {
         Delivery delivery = deliveryMapper.fromDto(dto);
         delivery.getProducts().forEach(p -> p.setDelivery(delivery));
         delivery.setStatusDelivery(StatusDelivery.ON_WAY);
         deliveryRepository.save(delivery);
+        log.info("Save delivery id=" + delivery.getId());
     }
 }
